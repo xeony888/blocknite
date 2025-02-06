@@ -9,12 +9,19 @@ crate-type = ["cdylib", "lib"]
 name = "blocknite"
 
 [features]
+anchor-debug = []
 default = []
 cpi = ["no-entrypoint"]
+sdk = ["no-entrypoint", "rand", "anchor-client"]
 no-entrypoint = []
 no-idl = []
 no-log-ix-name = []
 idl-build = ["anchor-lang/idl-build"]
 
 [dependencies]
-anchor-lang = "0.30.1"
+anchor-lang = { version = "0.29", features = ["init-if-needed"] }
+spl-token = "7.0.0"
+orao-solana-vrf = { version = "0.4.0", default-features = false, features = ["cpi"] }
+rand = { version = "0.8", optional = true }
+anchor-client = { version = "0.30.1", optional = true }
+
